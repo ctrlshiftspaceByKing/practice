@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://I:/java教学视频/黑马就业班/PingYouGou/品优购/02.参考资料/mybatis/itheimaCustomerMybatisGenerator/lib/mybatis-generator-core-1.3.2.jar!/" />
+      <root url="jar://I:/java教学视频/黑马就业班/PingYouGou/品优购/02.参考资料/mybatis/itheimaCustomerMybatisGenerator/lib/log4j-1.2.16.jar!/" />
+      <root url="jar://I:/java教学视频/黑马就业班/PingYouGou/品优购/02.参考资料/mybatis/itheimaCustomerMybatisGenerator/lib/mybatis-3.2.3.jar!/" />
+      <root url="jar://I:/java教学视频/黑马就业班/PingYouGou/品优购/02.参考资料/mybatis/itheimaCustomerMybatisGenerator/lib/ojdbc14.jar!/" />
+      <root url="jar://I:/java教学视频/黑马就业班/PingYouGou/品优购/02.参考资料/mybatis/itheimaCustomerMybatisGenerator/lib/mysql-connector-java-5.1.28-bin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
