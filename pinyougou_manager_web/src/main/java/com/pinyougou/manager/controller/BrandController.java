@@ -55,6 +55,11 @@ public class BrandController {
         }
     }
 
+    /**
+     * 根据id查询实体 在页面回显数据
+     * @param id
+     * @return
+     */
     @RequestMapping("/findOne")
     public TbBrand findOne(Long id){
         return brandService.findOne(id);

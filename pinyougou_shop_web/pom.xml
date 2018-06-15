@@ -11,7 +11,7 @@
 
     <artifactId>pinyougou_shop_web</artifactId>
     <packaging>war</packaging>
-    <name>pinyougou-shop-web Maven Webapp</name>
+    <name>pinyougou-shop-web</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <!--common通用的模块-->
