@@ -53,7 +53,28 @@ public class BrandController {
             e.printStackTrace();
             return new Result(false,"添加失败");
         }
+    }
 
+    @RequestMapping("/findOne")
+    public TbBrand findOne(Long id){
+        return brandService.findOne(id);
+    }
+
+
+    /**
+     * 修改商品
+     * @param tbBrand
+     * @return
+     */
+    @RequestMapping("/update")
+    public Result update(@RequestBody TbBrand tbBrand){
+        try {
+            brandService.update(tbBrand );
+            return new Result(true,"更新成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"更新失败");
+        }
     }
 
 }
