@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.mapper.TbBrandMapper;
 import com.pinyougou.pojo.TbBrand;
+import com.pinyougou.pojo.TbBrandExample;
 import com.pinyougou.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -61,5 +62,29 @@ public class BrandServiceImpl implements BrandService {
         for (Long id:ids) {
             tbBrandMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    @Override
+    public PageResult findPage(TbBrand tbBrand, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+
+        TbBrandExample example = new TbBrandExample();
+        //创建 查询条件设置
+        TbBrandExample.Criteria criteria = example.createCriteria();
+        //如果搜索条件不为空
+        if(tbBrand!=null){
+            if(tbBrand.getName()!=null&&tbBrand.getName().length()>0){
+                //如果前端转过来的名字不为空,添加搜索条件
+                criteria.andNameLike("%"+tbBrand.getName()+"%");
+            }
+            if(tbBrand.getFirstChar()!=null&&tbBrand.getFirstChar().length()>0){
+                criteria.andFirstCharEqualTo(tbBrand.getFirstChar());
+            }
+        }
+
+        Page<TbBrand> page = (Page<TbBrand>) tbBrandMapper.selectByExample(example);
+
+        PageResult pageResult = new PageResult(page.getTotal(), page.getResult());
+        return pageResult;
     }
 }

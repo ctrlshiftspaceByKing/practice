@@ -49,4 +49,13 @@ public interface BrandService {
      * @param ids
      */
     public void delete(Long[] ids);
+
+    /**
+     *  条件查询功能，输入品牌名称、首字母后查询，并分页
+     * @param tbBrand 搜索条件
+     * @param pageNum 当前页码
+     * @param pageSize 每页记录数
+     * @return
+     */
+    public PageResult findPage(TbBrand tbBrand ,int pageNum,int pageSize);
 }

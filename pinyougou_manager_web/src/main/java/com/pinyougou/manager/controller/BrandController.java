@@ -83,7 +83,7 @@ public class BrandController {
     }
 
     /**
-     * 根据id批量商城
+     * 根据id批量删除
      * @param ids
      * @return
      */
@@ -96,6 +96,18 @@ public class BrandController {
             e.printStackTrace();
             return new Result(false,"删除失败");
         }
+    }
+
+    /**
+     * 查询分页
+     * @param tbBrand
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/search")
+    public PageResult search(@RequestBody TbBrand tbBrand ,int page,int rows){
+        return brandService.findPage(tbBrand,page,rows);
     }
 
 }
