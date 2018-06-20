@@ -1,8 +1,8 @@
 package com.pinyougou.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbBrand;
-import com.pinyougou.service.BrandService;
+import com.pinyougou.pojo.TbTypeTemplate;
+import com.pinyougou.service.TypeTemplateService;
 import entity.PageResult;
 import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,19 +17,19 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/brand")
-public class BrandController {
+@RequestMapping("/typeTemplate")
+public class TypeTemplateController {
 
 	@Reference
-	private BrandService brandService;
+	private TypeTemplateService typeTemplateService;
 	
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbBrand> findAll(){			
-		return brandService.findAll();
+	public List<TbTypeTemplate> findAll(){			
+		return typeTemplateService.findAll();
 	}
 	
 	
@@ -39,18 +39,18 @@ public class BrandController {
 	 */
 	@RequestMapping("/findPage")
 	public PageResult  findPage(int page,int rows){			
-		return brandService.findPage(page, rows);
+		return typeTemplateService.findPage(page, rows);
 	}
 	
 	/**
 	 * 增加
-	 * @param brand
+	 * @param typeTemplate
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbBrand brand){
+	public Result add(@RequestBody TbTypeTemplate typeTemplate){
 		try {
-			brandService.add(brand);
+			typeTemplateService.add(typeTemplate);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,13 +60,13 @@ public class BrandController {
 	
 	/**
 	 * 修改
-	 * @param brand
+	 * @param typeTemplate
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(@RequestBody TbBrand brand){
+	public Result update(@RequestBody TbTypeTemplate typeTemplate){
 		try {
-			brandService.update(brand);
+			typeTemplateService.update(typeTemplate);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,8 +80,8 @@ public class BrandController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public TbBrand findOne(Long id){
-		return brandService.findOne(id);		
+	public TbTypeTemplate findOne(Long id){
+		return typeTemplateService.findOne(id);		
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class BrandController {
 	@RequestMapping("/delete")
 	public Result delete(Long [] ids){
 		try {
-			brandService.delete(ids);
+			typeTemplateService.delete(ids);
 			return new Result(true, "删除成功"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,8 +108,8 @@ public class BrandController {
 	 * @return
 	 */
 	@RequestMapping("/search")
-	public PageResult search(@RequestBody TbBrand brand, int page, int rows  ){
-		return brandService.findPage(brand, page, rows);		
+	public PageResult search(@RequestBody TbTypeTemplate typeTemplate, int page, int rows  ){
+		return typeTemplateService.findPage(typeTemplate, page, rows);		
 	}
 	
 }
