@@ -66,8 +66,20 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 * 修改
 	 */
 	@Override
-	public void update(TbSpecification specification){
-		specificationMapper.updateByPrimaryKey(specification);
+	public void update(Specification specification){
+		specificationMapper.updateByPrimaryKey(specification.getSpecification());//先保存规格
+		//删除原来有的规格选项
+		TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+		TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+		//指定规格id为查询条件
+		criteria.andSpecIdEqualTo(specification.getSpecification().getId());
+		//删除
+		optionMapper.deleteByExample(example);
+		//循环插入规格选项
+		for (TbSpecificationOption tbSpecificationOption : specification.getSpecificationOptionList()) {
+			tbSpecificationOption.setSpecId(specification.getSpecification().getId());
+			optionMapper.insert(tbSpecificationOption);
+		}
 	}	
 	
 	/**
@@ -82,7 +94,9 @@ public class SpecificationServiceImpl implements SpecificationService {
 		//查询规格选项列表
 		TbSpecificationOptionExample example = new TbSpecificationOptionExample();
 		TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
-		criteria.andIdEqualTo(id);
+		//根据规格id查询
+		criteria.andSpecIdEqualTo(id);
+
 		List<TbSpecificationOption> optionsList = optionMapper.selectByExample(example);
 		//构建组合实体类返回结果
 		Specification specification = new Specification();
