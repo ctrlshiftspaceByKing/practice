@@ -16,6 +16,7 @@ import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 服务实现层
@@ -113,6 +114,12 @@ public class SpecificationServiceImpl implements SpecificationService {
 	public void delete(Long[] ids) {
 		for(Long id:ids){
 			specificationMapper.deleteByPrimaryKey(id);
+			//删除原有的规格选项
+			TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+			TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+			criteria.andSpecIdEqualTo(id);//根据id查询
+			optionMapper.deleteByExample(example);
+
 		}		
 	}
 	
@@ -134,5 +141,12 @@ public class SpecificationServiceImpl implements SpecificationService {
 		Page<TbSpecification> page= (Page<TbSpecification>)specificationMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+
+	@Override
+	public List<Map> selectOptionList() {
+
+		return specificationMapper.selectOptionList();
+	}
+
 }

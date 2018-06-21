@@ -1,6 +1,5 @@
- //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService){	
-	
+//控制层
+app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService,brandService,specificationService){
 	$controller('baseController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
@@ -26,8 +25,15 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
-			}
+				$scope.entity= response;
+              //  $scope.entity.brandIds=  JSON.parse($scope.entity.brandIds);//转换品牌列表
+              //  $scope.entity.specIds=  JSON.parse($scope.entity.specIds);//转换规格列表
+              //  $scope.entity.customAttributeItems= JSON.parse($scope.entity.customAttributeItems);//转换扩展属性
+                $scope.entity.brandIds=angular.fromJson($scope.entity.brandIds);
+                $scope.entity.specIds=angular.fromJson($scope.entity.specIds);
+                $scope.entity.customAttributeItems=angular.fromJson($scope.entity.customAttributeItems);
+
+            }
 		);				
 	}
 	
@@ -75,5 +81,40 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 			}			
 		);
 	}
-    
+
+    $scope.brandList={data:[]};//品牌列表
+
+    //读取品牌列表
+    $scope.findBrandList=function(){
+        brandService.selectOptionList().success(
+            function(response){
+            	debugger;
+                $scope.brandList={data:response};
+            }
+        );
+    }
+
+    //规格列表
+    $scope.specificationList={data:[]};
+
+    $scope.findSpecificationList=function(){
+        specificationService.selectOptionList().success(
+            function (response) {
+            	debugger;
+                $scope.specificationList={data:response};
+            }
+        )
+    }
+
+    $scope.entity={customAttributeItems:[]};
+    //新增扩展属性行
+    $scope.addTabRow=function () {
+        $scope.entity.customAttributeItems.push({});
+    }
+
+    $scope.deleTabRow=function (index) {
+        $scope.entity.customAttributeItems.splice(index,1);
+    }
+
+    //  $scope.brandList={data:[{id:1,text:'联想'},{id:2,text:'华为'},{id:3,text:'小米'}]};//品牌列表
 });	

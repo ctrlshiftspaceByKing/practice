@@ -29,5 +29,20 @@ app.controller('baseController' ,function($scope){
             $scope.selectIds.splice(idx, 1);//删除 
 		}
 	}
-	
+
+    //提取json字符串数据中某个属性，返回拼接字符串 逗号分隔
+    $scope.jsonToString=function (json,key) {
+        //需要转换成JSON对象
+        var fromJson = angular.fromJson(json);
+        var str="";
+        for (var i=0;i<fromJson.length;i++) {
+            str+=fromJson[i][key]+",";
+        }
+
+        if(str.length>0){
+            str=str.substring(0,str.length-1);
+        }
+        return str;
+    }
+
 });	
