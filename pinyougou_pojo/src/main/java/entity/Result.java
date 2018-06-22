@@ -12,11 +12,11 @@ public class Result implements Serializable {
 
     private boolean success;//是否添加成功
 
-    private String messages;//返回的信息
+    private String message;//返回的信息
 
-    public Result(boolean success, String messages) {
+    public Result(boolean success, String message) {
         this.success = success;
-        this.messages = messages;
+        this.message = message;
     }
 
     public boolean isSuccess() {
@@ -27,11 +27,11 @@ public class Result implements Serializable {
         this.success = success;
     }
 
-    public String getMessages() {
-        return messages;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessages(String messages) {
-        this.messages = messages;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
