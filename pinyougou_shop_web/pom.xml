@@ -95,6 +95,11 @@
             <version>4.1.0.RELEASE</version>
         </dependency>
 
+        <!--fastDFS-->
+        <dependency>
+            <groupId>org.csource.fastdfs</groupId>
+            <artifactId>fastdfs</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>pinyougou-shop-web</finalName>

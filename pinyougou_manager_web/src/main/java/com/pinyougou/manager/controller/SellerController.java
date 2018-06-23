@@ -122,5 +122,14 @@ public class SellerController {
 			return new Result(false, "更新失败");
 		}
 	}
+
+	public  static int faa(){
+		int a=1;
+		return a;
+	}
+	public static void main(String[] args) {
+		int i = SellerController.faa();
+		System.out.println(i);
+	}
 	
 }
