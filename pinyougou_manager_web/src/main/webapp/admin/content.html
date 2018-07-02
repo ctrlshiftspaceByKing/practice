@@ -2,22 +2,33 @@
 <html>
 
 <head>
-    <!-- 页面meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>广告管理</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
-    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-    
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>管理</title>
+	<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+	<link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<SCRIPT src="../plugins/jQuery/jquery-2.2.3.min.js"></SCRIPT>
+	<SCRIPT src="../plugins/bootstrap/js/bootstrap.min.js"></SCRIPT>
+
+	<SCRIPT type="text/javascript" src="../plugins/angularjs/angular.min.js"></SCRIPT>
+	<!-- 分页组件开始 -->
+	<SCRIPT src="../plugins/angularjs/pagination.js"></SCRIPT>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- 分页组件结束 -->
+
+
+	<SCRIPT type="text/javascript" src="../js/base_pagination.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="../js/service/contentService.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="../js/service/contentCategoryService.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="../js/service/uploadService.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="../js/controller/baseController.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="../js/controller/contentController.js"></SCRIPT>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="contentController" ng-init="findContentCategoryList()">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -104,7 +115,7 @@
 				<tr>
 		      		<td>广告分类</td>
 		      		<td>
-		      			<select class="form-control" ng-model="entity.categoryId" ng-options="item.id as item.name for item in options['content_category'].data">
+		      			<select class="form-control" ng-model="entity.categoryId" ng-options="item.id as item.name for item in contentCategoryList">
 		                </select>
 		      		</td>
 		      	</tr>
@@ -126,7 +137,7 @@
 						<table>
 							<tr>
 								<td>
-								<input type="file" id="file" />				                
+									<input type="file" id="file" />
 					                <button class="btn btn-primary" type="button" ng-click="uploadFile()">
 				                   		上传
 					                </button>	
@@ -141,7 +152,7 @@
 		      	<tr>
 		      		<td>是否有效</td>
 		      		<td>
-		      		   <input type="checkbox" class="icheckbox_square-blue" >
+		      		   <input type="checkbox" class="icheckbox_square-blue" ng-model="{{status[entity.status]}}" ng-true-value="1" ng-false-value="0">
 		      		</td>
 		      	</tr>  	
 			 </table>				

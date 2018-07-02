@@ -26,6 +26,12 @@
             <artifactId>pinyougou_sellergoods_interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--广告服务类-->
+        <dependency>
+            <groupId>com.pingyougou</groupId>
+            <artifactId>pinyougou_content_interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>

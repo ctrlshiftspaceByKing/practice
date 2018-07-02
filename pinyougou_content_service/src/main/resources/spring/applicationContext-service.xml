@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:application name="pinyougou-content-service"></dubbo:application>
+    <dubbo:registry protocol="zookeeper" port="2181" address="192.168.25.133"></dubbo:registry>
+    <dubbo:protocol port="20880" name="dubbo"></dubbo:protocol>
+    <!--通过注解：只要在com.pinyougou.sellergoods.service下的实现类修饰一个注解@service  :是dubbo的-->
+    <dubbo:annotation package="com.pinyougou.content.service"></dubbo:annotation>
+
+
+</beans>

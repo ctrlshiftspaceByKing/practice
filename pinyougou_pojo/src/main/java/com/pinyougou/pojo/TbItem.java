@@ -1,17 +1,27 @@
 package com.pinyougou.pojo;
 
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.solr.core.mapping.Dynamic;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Map;
 
 public class TbItem implements Serializable {
+    @Field
+    //注解的作用就是 将属性和schema.xml建立一个映射关系
+    //默认的请情况下，如果域名和属性名一致，那么就可以不写@field(value=""),不一致需要写
     private Long id;
 
+    @Field("item_title")
     private String title;
 
     private String sellPoint;
 
+    @Field("item_price")
     private BigDecimal price;
+//    BigDecimal
 
     private Integer stockCount;
 
@@ -19,6 +29,7 @@ public class TbItem implements Serializable {
 
     private String barcode;
 
+    @Field("item_image")
     private String image;
 
     private Long categoryid;
@@ -37,21 +48,37 @@ public class TbItem implements Serializable {
 
     private String isDefault;
 
+    @Field("item_goodsid")
     private Long goodsId;
 
     private String sellerId;
 
     private String cartThumbnail;
 
+    @Field("item_category")
     private String category;
 
+    @Field("item_brand")
     private String brand;
 
     private String spec;
 
+    @Field("item_seller")
     private String seller;
 
+    @Dynamic
+    @Field("item_spec_*")
+    private Map<String,String> specMap;
+
     private static final long serialVersionUID = 1L;
+
+    public Map<String, String> getSpecMap() {
+        return specMap;
+    }
+
+    public void setSpecMap(Map<String, String> specMap) {
+        this.specMap = specMap;
+    }
 
     public Long getId() {
         return id;

@@ -26,4 +26,7 @@
         <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.pinyougou.sellergoods.service.*.*(..))"/>
     </aop:config>
 
+    <!-- 开启事务控制的注解支持 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 </beans>
